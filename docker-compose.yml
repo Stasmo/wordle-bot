@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  web:
+    driver:  bridge
+
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    networks:
+      - web
+    privileged: true
+    shm_size: 2g
+    ports:
+      - 4444:4444
+      - 5900:5900
+
+  app:
+    build: .
+    networks:
+      - web
+    depends_on: 
+      - chrome
+    environment:
+      - SELENIUM_HUB_URL=http://chrome:4444/wd/hub
