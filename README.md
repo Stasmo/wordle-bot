@@ -20,3 +20,11 @@ Or you can run it in a docker container.
 docker-compose up -d chrome
 docker-compose run app
 ```
+
+## Tests
+
+Run the following command to run the tests.
+
+```
+npx mocha
+```
